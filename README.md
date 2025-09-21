@@ -1,5 +1,5 @@
 #a_basics
-<img width="938" height="743" alt="image" src="https://github.com/user-attachments/assets/f1e03f76-7625-4577-870a-4e28a3b00df7" />
+<img width="916" height="746" alt="image" src="https://github.com/user-attachments/assets/ed7d39c4-74b1-4f6e-b265-f022205ec97a" />
 
 #b_collections_io
 <img width="1174" height="149" alt="image" src="https://github.com/user-attachments/assets/196e6006-ebcd-4c4e-8f2e-990b47838226" />
