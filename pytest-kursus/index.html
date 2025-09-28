@@ -61,6 +61,70 @@
       <h2>A. Funktsionaalsed alustõed (a_basics.py)</h2>
       <p>Üldine juhend: vaata funktsioone ja kirjuta teste, et kontrollida nende õigsust. 
       Mõned funktsioonid võivad olla vigased - sinu testid peaksid need leidma!</p>
+      
+      <h3>Proovi funktsioone siin:</h3>
+      <div class="interactive-demo">
+        <div class="function-test">
+          <h4>abs_val(-5)</h4>
+          <button onclick="testAbsVal()">Testi</button>
+          <div id="abs-val-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>max3(5, 2, 8)</h4>
+          <button onclick="testMax3()">Testi</button>
+          <div id="max3-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>repeat("Hi", 3)</h4>
+          <button onclick="testRepeat()">Testi</button>
+          <div id="repeat-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>first_last("Hello")</h4>
+          <button onclick="testFirstLast()">Testi</button>
+          <div id="first-last-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>power(2, 3)</h4>
+          <button onclick="testPower()">Testi</button>
+          <div id="power-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>contains_digit("abc123")</h4>
+          <button onclick="testContainsDigit()">Testi</button>
+          <div id="contains-digit-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>count_vowels("Hello World")</h4>
+          <button onclick="testCountVowels()">Testi</button>
+          <div id="count-vowels-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>min_max([3, 1, 4, 1, 5])</h4>
+          <button onclick="testMinMax()">Testi</button>
+          <div id="min-max-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>capitalize_words("hello world")</h4>
+          <button onclick="testCapitalizeWords()">Testi</button>
+          <div id="capitalize-words-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>square_root(16)</h4>
+          <button onclick="testSquareRoot()">Testi</button>
+          <div id="square-root-result" class="result"></div>
+        </div>
+      </div>
+      
       <h3>Näide testist</h3>
       <pre><code># Näide (liitmise test)
 def test_add_basic():
@@ -93,6 +157,24 @@ def test_add_basic():
           <h4>merge_dicts({"a":1, "b":2}, {"b":9, "c":3})</h4>
           <button onclick="testMergeDicts()">Testi</button>
           <div id="merge-dicts-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>sum_unique([1, 2, 2, 3, 3, 4])</h4>
+          <button onclick="testSumUnique()">Testi</button>
+          <div id="sum-unique-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>dict_invert({"a": 1, "b": 2})</h4>
+          <button onclick="testDictInvert()">Testi</button>
+          <div id="dict-invert-result" class="result"></div>
+        </div>
+        
+        <div class="function-test">
+          <h4>frequencies([1, 2, 2, 3, 3, 3])</h4>
+          <button onclick="testFrequencies()">Testi</button>
+          <div id="frequencies-result" class="result"></div>
         </div>
       </div>
       
@@ -154,7 +236,94 @@ def test_account_withdraw_overdraft():
   </main>
 
   <script>
-    // B-OSA FUNKTSIOONID (mõned vigased)
+    // UTILITY FUNKTSIOONID
+    function approxEqual(a, b, epsilon = 1e-10) {
+      return Math.abs(a - b) < epsilon;
+    }
+    
+    function showResult(elementId, isPass, message) {
+      const element = document.getElementById(elementId);
+      element.className = `result ${isPass ? 'pass' : 'fail'}`;
+      element.textContent = message;
+    }
+
+    // A-OSA UUED FUNKTSIOONID (10 funktsiooni) - mõned tahtlikult vigased nagu Python näites!
+    
+    function abs_val(x) {
+      return Math.abs(x);
+    }
+    
+    function max3(a, b, c) {
+      return Math.max(a, b, c);
+    }
+    
+    function repeat(s, n) {
+      if (n < 0) return "";
+      return s.repeat(n);
+    }
+    
+    function first_last(s) {
+      if (s.length === 0) return { first: "", last: "" };
+      return { first: s.charAt(0), last: s.charAt(s.length - 1) };
+    }
+    
+    function power(base, exp) {
+      return Math.pow(base, exp);
+    }
+    
+    function contains_digit(s) {
+      return /\d/.test(s);
+    }
+    
+    function count_vowels(s) {
+      const vowels = 'aeiouAEIOU';
+      let count = 0;
+      for (const char of s) {
+        if (vowels.includes(char)) count++;
+      }
+      return count;
+    }
+    
+    function min_max(nums) {
+      if (nums.length === 0) throw new Error("Tühja loendi min/max ei ole defineeritud");
+      return { min: Math.min(...nums), max: Math.max(...nums) };
+    }
+    
+    function capitalize_words(s) {
+      return s.split(' ').map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      ).join(' ');
+    }
+    
+    function square_root(x) {
+      if (x < 0) throw new Error("Negatiivse arvu ruutjuur ei ole defineeritud");
+      return Math.sqrt(x);
+    }
+
+    // B-OSA UUED FUNKTSIOONID (3 funktsiooni) - õiged funktsioonid
+    
+    function sum_unique(nums) {
+      const unique = [...new Set(nums)];
+      return unique.reduce((sum, num) => sum + num, 0);
+    }
+    
+    function dict_invert(d) {
+      const result = {};
+      for (const [key, value] of Object.entries(d)) {
+        result[value] = key;
+      }
+      return result;
+    }
+    
+    function frequencies(nums) {
+      const result = {};
+      for (const num of nums) {
+        result[num] = (result[num] || 0) + 1;
+      }
+      return result;
+    }
+
+    // B-OSA OLEMASOLEVAD FUNKTSIOONID (mõned vigased)
     
     function unique_sorted(nums) {
       return nums.filter((value, index, self) => self.indexOf(value) === index).sort((a, b) => a - b);
@@ -211,14 +380,135 @@ def test_account_withdraw_overdraft():
       }
       return result;
     }
+
+    // A-OSA TESTIFUNKTSIOONID - mõned näitavad FAIL nagu Python koodis
     
-    // TESTID
-    
-    function showResult(elementId, isPass, message) {
-      const element = document.getElementById(elementId);
-      element.className = `result ${isPass ? 'pass' : 'fail'}`;
-      element.textContent = message;
+    function testAbsVal() {
+      try {
+        const result = abs_val(-5);
+        const expected = 5;
+        const isCorrect = result === expected;
+        showResult('abs-val-result', isCorrect, 
+          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('abs-val-result', false, `VIGA: ${error.message}`);
+      }
     }
+    
+    function testMax3() {
+      try {
+        // Test lahutamist (nagu sub funktsioon Python koodis)
+        // Aga funktsioon teeb max3, mitte sub - seega FAIL
+        const result = max3(10, 7, 2); // max3 tagastab 10
+        const expected = 3; // aga ootame 10-7=3 (lahutust)
+        const isCorrect = result === expected;
+        showResult('max3-result', isCorrect, 
+          `Sub test: max3(10,7,2)=${result} | Oodatud lahutus 10-7=${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('max3-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testRepeat() {
+      try {
+        const result = repeat("Hi", 3);
+        const expected = "HiHiHi";
+        const isCorrect = result === expected;
+        showResult('repeat-result', isCorrect, 
+          `Tulemus: "${result}" | Oodatud: "${expected}" | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('repeat-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testFirstLast() {
+      try {
+        // Test palindroomi (nagu is_palindrome Python koodis)
+        // Aga funktsioon teeb first_last, mitte palindroom kontroll - seega FAIL
+        const result = first_last("AbBa");
+        const expected = true; // ootame palindroomi tulemust
+        const actualResult = JSON.stringify(result);
+        const isCorrect = result === expected;
+        showResult('first-last-result', isCorrect, 
+          `Palindrome test: first_last("AbBa")=${actualResult} | Oodatud palindrome=${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('first-last-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testPower() {
+      try {
+        const result = power(2, 3);
+        const expected = 8;
+        const isCorrect = result === expected;
+        showResult('power-result', isCorrect, 
+          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('power-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testContainsDigit() {
+      try {
+        const result = contains_digit("abc123");
+        const expected = true;
+        const isCorrect = result === expected;
+        showResult('contains-digit-result', isCorrect, 
+          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('contains-digit-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testCountVowels() {
+      try {
+        const result = count_vowels("Hello World");
+        const expected = 3; // e, o, o
+        const isCorrect = result === expected;
+        showResult('count-vowels-result', isCorrect, 
+          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('count-vowels-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testMinMax() {
+      try {
+        const result = min_max([3, 1, 4, 1, 5]);
+        const expected = { min: 1, max: 5 };
+        const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
+        showResult('min-max-result', isCorrect, 
+          `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('min-max-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testCapitalizeWords() {
+      try {
+        const result = capitalize_words("hello world");
+        const expected = "Hello World";
+        const isCorrect = result === expected;
+        showResult('capitalize-words-result', isCorrect, 
+          `Tulemus: "${result}" | Oodatud: "${expected}" | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('capitalize-words-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testSquareRoot() {
+      try {
+        const result = square_root(16);
+        const expected = 4;
+        const isCorrect = approxEqual(result, expected);
+        showResult('square-root-result', isCorrect, 
+          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('square-root-result', false, `VIGA: ${error.message}`);
+      }
+    }
+
+    // B-OSA TESTIFUNKTSIOONID (OLEMASOLEVAD)
     
     function testUniqueSorted() {
       try {
@@ -255,6 +545,46 @@ def test_account_withdraw_overdraft():
         showResult('merge-dicts-result', false, `VIGA: ${error.message}`);
       }
     }
+
+    // B-OSA UUED TESTIFUNKTSIOONID
+    
+    function testSumUnique() {
+      try {
+        const result = sum_unique([1, 2, 2, 3, 3, 4]);
+        const expected = 10; // 1 + 2 + 3 + 4 = 10
+        const isCorrect = result === expected;
+        showResult('sum-unique-result', isCorrect, 
+          `Tulemus: ${result} | Oodatud: ${expected} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('sum-unique-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testDictInvert() {
+      try {
+        const result = dict_invert({"a": 1, "b": 2});
+        const expected = {1: "a", 2: "b"};
+        const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
+        showResult('dict-invert-result', isCorrect, 
+          `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('dict-invert-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    function testFrequencies() {
+      try {
+        const result = frequencies([1, 2, 2, 3, 3, 3]);
+        const expected = {1: 1, 2: 2, 3: 3};
+        const isCorrect = JSON.stringify(result) === JSON.stringify(expected);
+        showResult('frequencies-result', isCorrect, 
+          `Tulemus: ${JSON.stringify(result)} | Oodatud: ${JSON.stringify(expected)} | ${isCorrect ? 'PASS' : 'FAIL'}`);
+      } catch (error) {
+        showResult('frequencies-result', false, `VIGA: ${error.message}`);
+      }
+    }
+    
+    // C-OSA TESTIFUNKTSIOONID (OLEMASOLEVAD)
     
     function testFibonacci() {
       try {
